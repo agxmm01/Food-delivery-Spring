@@ -1,64 +1,80 @@
-🍽️ Dish-Dash Backend API
+# 🍽️ Dish-Dash Backend API
 
-Dish-Dash is a Spring Boot backend service for an online food ordering system.
-It manages users, restaurants, food items, and orders with MongoDB as the database.
-This backend is designed to integrate seamlessly with a React (Vite) frontend and supports secure authentication.
+Dish-Dash is a **Spring Boot 3.x backend service** for an online food
+ordering platform.\
+It manages users, restaurants, food items, and orders using **MongoDB**
+for persistence.
 
-🚀 Features
+This backend is designed to integrate seamlessly with a **React (Vite)
+frontend** and provides secure authentication with **Spring Security
+(session-based).**
 
-User authentication & role-based access control (Spring Security + sessions)
+------------------------------------------------------------------------
 
-Register & manage multiple restaurants
+## 🚀 Features
 
-CRUD operations for food items
+-   🔐 User Authentication & Role-Based Access Control (Spring
+    Security + Session)
+-   🏪 Multi-Restaurant Management (Restaurant Owner role)
+-   🍔 CRUD Operations for Food Items
+-   🛒 Order Placement & Status Tracking
+-   🗄️ MongoDB Atlas Integration
+-   ☁️ AWS S3 Integration (Food & Restaurant Images)
+-   🌐 RESTful APIs for Frontend Integration
+-   🛡️ Global Exception Handling
 
-Order placement and status tracking
+------------------------------------------------------------------------
 
-MongoDB integration for persistence
+## 🛠️ Tech Stack
 
-AWS S3 integration (for food/restaurant images)
+  Technology            Version
+  --------------------- -----------------------
+  Java                  17
+  Spring Boot           3.x
+  Spring Security       6.x
+  Spring Data MongoDB   Latest
+  MongoDB Atlas         Cloud Database
+  AWS SDK (S3)          v2
+  Maven                 Build Tool
+  Lombok                Boilerplate Reduction
 
-RESTful APIs for frontend integration
+------------------------------------------------------------------------
 
-📂 Project Structure
-src/main/java/in/agampal/dishdashapi/
-│── config/        # Security & application configuration
-│── controller/    # REST API controllers
-│── dto/           # Data Transfer Objects
-│── entity/        # MongoDB entities (User, Restaurant, FoodItem, Order)
-│── exception/     # Custom exception handling
-│── filters/       # Security filters (session/JWT if used)
-│── io/            # Request/response models
-│── repository/    # MongoDB repositories
-│── service/       # Business logic
-│── util/          # Utility classes (helpers, token utils, etc.)
-│── FoodiesapiApplication.java  # Main Spring Boot application
+## 📂 Project Structure
 
-🛠️ Tech Stack
+    src/main/java/in/agampal/dishdashapi
+    │
+    ├── config/          # Security configuration & application setup
+    ├── controller/      # REST Controllers (API endpoints)
+    ├── dto/             # Data Transfer Objects
+    ├── entity/          # MongoDB Documents (User, Restaurant, FoodItem, Order)
+    ├── exception/       # Custom exceptions & global exception handler
+    ├── filters/         # Security filters (Session/JWT if implemented)
+    ├── io/              # Request & Response models
+    ├── repository/      # Spring Data MongoDB repositories
+    ├── service/         # Business logic layer
+    ├── util/            # Utility/helper classes
+    │
+    └── FoodiesapiApplication.java   # Main Spring Boot entry point
 
-Java 17
+------------------------------------------------------------------------
 
-Spring Boot 3.x
+## ⚙️ Setup & Installation
 
-Spring Security (session-based authentication)
+### 1️⃣ Clone the Repository
 
-Spring Data MongoDB
-
-AWS SDK (S3)
-
-Lombok
-
-Maven
-
-⚙️ Setup & Installation
-1️⃣ Clone the repository
+``` bash
 git clone https://github.com/agxmm01/Dish-Dash_BACKEND_API.git
 cd Dish-Dash_BACKEND_API
+```
 
-2️⃣ Configure Environment Variables
+------------------------------------------------------------------------
 
-Create a .env file (or update application.properties) with your values:
+### 2️⃣ Configure Environment Variables
 
+Update `application.properties`:
+
+``` properties
 # MongoDB
 spring.data.mongodb.uri=mongodb+srv://<username>:<password>@cluster-url/dbname
 
@@ -69,62 +85,62 @@ AWS_BUCKET_NAME=your-bucket-name
 
 # Server
 server.port=8080
+```
 
-3️⃣ Build & Run
+------------------------------------------------------------------------
+
+### 3️⃣ Build & Run
+
+``` bash
 mvn clean install
 mvn spring-boot:run
+```
 
+Application will start at:
 
-The backend will start at 👉 http://localhost:8080
+👉 http://localhost:8080
 
-📡 API Endpoints (Sample)
-Auth
+------------------------------------------------------------------------
 
-POST /auth/register → Register new user (Customer / Restaurant Owner)
+## 📡 API Endpoints
 
-POST /auth/login → Login (session-based)
+### 🔐 Authentication
 
-POST /auth/logout → Logout
+  Method   Endpoint           Description
+  -------- ------------------ --------------------------------------
+  POST     `/auth/register`   Register new user (Customer / Owner)
+  POST     `/auth/login`      Login (Session-based)
+  POST     `/auth/logout`     Logout
 
-Restaurants
+------------------------------------------------------------------------
 
-POST /restaurants → Create restaurant (Owner only)
+### 🏪 Restaurants
 
-GET /restaurants → Get all restaurants
+  Method   Endpoint              Description
+  -------- --------------------- --------------------------------
+  POST     `/restaurants`        Create restaurant (Owner only)
+  GET      `/restaurants`        Get all restaurants
+  GET      `/restaurants/{id}`   Get restaurant by ID
 
-GET /restaurants/{id} → Get restaurant by ID
+------------------------------------------------------------------------
 
-Food Items
+### 🍔 Food Items
 
-POST /restaurants/{id}/food → Add food item (Owner only)
+  Method   Endpoint                   Description
+  -------- -------------------------- ------------------------------
+  POST     `/restaurants/{id}/food`   Add food item (Owner only)
+  GET      `/restaurants/{id}/food`   Get food items by restaurant
+  PUT      `/food/{id}`               Update food item
+  DELETE   `/food/{id}`               Delete food item
 
-GET /restaurants/{id}/food → Get food items of a restaurant
+------------------------------------------------------------------------
 
-PUT /food/{id} → Update food item
+### 🛒 Orders
 
-DELETE /food/{id} → Delete food item
+  Method   Endpoint                Description
+  -------- ----------------------- -----------------------------------
+  POST     `/orders`               Place new order
+  GET      `/orders/{id}`          Get order details
+  PUT      `/orders/{id}/status`   Update order status (Owner/Admin)
 
-Orders
-
-POST /orders → Place new order
-
-GET /orders/{id} → Get order details
-
-PUT /orders/{id}/status → Update order status (Owner/Admin)
-
-🧪 Testing
-
-Run unit tests with:
-
-mvn test
-
-📌 Next Steps
-
-Integrate with Dish-Dash Frontend (React + Vite)
-
-Deploy backend to AWS/GCP with MongoDB Atlas
-
-👨‍💻 Author
-
-Developed by Agampal Singh
-📌 GitHub: @agxmm01
+------------------------------------------------------------------------
