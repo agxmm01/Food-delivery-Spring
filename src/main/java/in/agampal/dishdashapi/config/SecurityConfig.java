@@ -1,7 +1,6 @@
 package in.agampal.dishdashapi.config;
 
 import in.agampal.dishdashapi.filters.JwtAuthenticationFilter;
-import in.agampal.dishdashapi.filters.JwtRefreshInterceptor;
 import in.agampal.dishdashapi.service.AppUserDetailsService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;

@@ -4,12 +4,10 @@ import in.agampal.dishdashapi.entity.FoodEntity;
 import in.agampal.dishdashapi.io.FoodRequest;
 import in.agampal.dishdashapi.io.FoodResponse;
 import in.agampal.dishdashapi.repository.FoodRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 import software.amazon.awssdk.core.sync.RequestBody;
@@ -17,7 +15,6 @@ import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.DeleteObjectRequest;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 import software.amazon.awssdk.services.s3.model.PutObjectResponse;
-//import in.agampal.dishdashapi.service.LocalFileStorageService;
 
 import java.io.IOException;
 import java.util.List;
@@ -25,7 +22,6 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
-@Slf4j
 public class FoodServiceImpl implements FoodService{
 
     @Autowired
@@ -60,15 +56,11 @@ public class FoodServiceImpl implements FoodService{
     }
 
     @Override
-    @Transactional
     public FoodResponse addFood(FoodRequest request, MultipartFile file) {
-        log.info("Attempting to add food: {}", request.getName());
         FoodEntity newFoodEntity = convertToEntity(request);
         String imageUrl = uploadFile(file);
         newFoodEntity.setImageUrl(imageUrl);
-        log.info("Created food entity: {}", newFoodEntity);
         newFoodEntity = foodRepository.save(newFoodEntity);
-        log.info("Food saved to database with ID: {}", newFoodEntity.getId());
         return convertToResponse(newFoodEntity);
     }
 

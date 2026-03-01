@@ -8,11 +8,11 @@ import in.agampal.dishdashapi.io.OrderRequest;
 import in.agampal.dishdashapi.io.OrderResponse;
 import in.agampal.dishdashapi.repository.CartRespository;
 import in.agampal.dishdashapi.repository.OrderRepository;
+import lombok.AllArgsConstructor;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -34,7 +34,6 @@ public class OrderServiceImpl implements OrderService{
     private String RAZORPAY_SECRET;
 
     @Override
-    @Transactional
     public OrderResponse createOrderWithPayment(OrderRequest request) throws RazorpayException {
         OrderEntity newOrder = convertToEntity(request);
         newOrder = orderRepository.save(newOrder);
@@ -57,7 +56,6 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
-    @Transactional
     public void verifyPayment(Map<String, String> paymentData, String status) {
         String razorpayOrderId = paymentData.get("razorpay_order_id");
         OrderEntity existingOrder = orderRepository.findByRazorpayOrderId(razorpayOrderId)
