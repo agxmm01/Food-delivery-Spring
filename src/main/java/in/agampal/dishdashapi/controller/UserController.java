@@ -15,7 +15,7 @@ public class UserController {
     private final UserService userService;
 
     // Admin creates a new user
-    @PostMapping
+    @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
     public UserResponse createUser(@RequestBody UserRequest request) {
         return userService.registerUser(request);
