@@ -30,7 +30,6 @@ public class SecurityConfig {
 
     private final AppUserDetailsService userDetailsService;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
-    private final in.agampal.dishdashapi.filters.JwtRefreshInterceptor jwtRefreshInterceptor;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
@@ -40,7 +39,6 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth.requestMatchers("/api/auth/**", "/api/foods/**", "/api/orders/all", "/api/orders/status/**", "/api/health/**").permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .addFilterBefore(jwtRefreshInterceptor, UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }

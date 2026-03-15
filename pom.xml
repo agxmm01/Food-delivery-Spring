@@ -8,10 +8,10 @@
 		<version>3.4.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>in.bushansirgur</groupId>
-	<artifactId>foodiesapi</artifactId>
+	<groupId>in.agampal</groupId>
+	<artifactId>dishdashapi</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>foodiesapi</name>
+	<name>dishdashapi</name>
 	<description>Spring Boot REST API for the online food delivery application</description>
 	<url/>
 	<licenses>
@@ -27,7 +27,7 @@
 		<url/>
 	</scm>
 	<properties>
-		<java.version>21</java.version>
+		<java.version>25</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
