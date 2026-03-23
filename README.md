@@ -48,7 +48,6 @@ frontend** and provides secure authentication with **Spring Security
     ├── controller/      # REST Controllers (API endpoints)
     ├── dto/             # Data Transfer Objects
     ├── entity/          # MongoDB Documents (User, Restaurant, FoodItem, Order)
-    ├── exception/       # Custom exceptions & global exception handler
     ├── filters/         # Security filters (Session/JWT if implemented)
     ├── io/              # Request & Response models
     ├── repository/      # Spring Data MongoDB repositories
